@@ -2,6 +2,7 @@ package workerpool
 
 import (
 	"context"
+	"go.uber.org/goleak"
 	"sync"
 	"testing"
 	"time"
@@ -39,6 +40,7 @@ func TestExample(t *testing.T) {
 }
 
 func TestMaxWorkers(t *testing.T) {
+	defer goleak.VerifyNone(t)
 	t.Parallel()
 
 	wp := New(0)
